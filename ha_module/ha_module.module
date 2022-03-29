@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * The ha_module module routines.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_form_alter().
+ */
+function ha_module_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    // clearing unwanted display items in node creation.
+    if ($form_id == "node_attendees_form") {
+        unset($form['revision']);
+        unset($form['revision_log']);
+        unset($form['revision_information']);
+        unset($form['meta']);
+    }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ha_module_theme($existing, $type, $theme, $path) {
+    // creating a template for display.
+    return [
+        'attendeesTableDisplay' => [
+            'variables' => [
+                'items' => [],
+            ],
+        ],
+    ];
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function ha_module_node_view(&$build, $node, $display, $view_mode) {
+
+    if($build['body']['#bundle'] == 'attendees') {
+        // gathering the data from block.
+        $customblock = \Drupal::service('plugin.manager.block')->createInstance('attendees_table', []);
+        // Attaching a template to this display.
+        $build['#theme'] = 'attendeesTableDisplay';
+        // Passing the data as variables to render in the twig file.
+        $build['#items'] = [
+            'title' => $node->getTitle(),
+            'body' => $node->body->value,
+            'main_table_render' => $customblock->build()
+        ];
+    }
+    return $build;
+}

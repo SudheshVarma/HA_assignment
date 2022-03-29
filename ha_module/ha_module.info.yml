@@ -1,0 +1,10 @@
+name: 'HA Assignment'
+description: 'Provides a node type for Attendees.'
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
+version: 8.x-1.0
+package: Assignment
+core_incompatible: false
+dependencies:
+  - drupal:node
