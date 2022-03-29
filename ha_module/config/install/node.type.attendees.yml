@@ -1,0 +1,18 @@
+uuid: 12c9da5b-b250-480b-a25d-bd18fa408440
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Attendees
+type: attendees
+description: 'A Content type to Store and Display list of Attendees'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

@@ -1,0 +1,32 @@
+uuid: 511d585e-b61b-46bb-8ab3-68ea8590fa41
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.attendees.body
+    - field.field.node.attendees.field_attendees
+    - node.type.attendees
+  module:
+    - text
+    - user
+id: node.attendees.teaser
+targetEntityType: node
+bundle: attendees
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_attendees: true

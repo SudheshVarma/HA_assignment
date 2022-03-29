@@ -1,0 +1,27 @@
+uuid: 210b81df-0d93-49cf-84fd-aa139c937a64
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attendees
+    - node.type.attendees
+  module:
+    - file
+id: node.attendees.field_attendees
+field_name: field_attendees
+entity_type: node
+bundle: attendees
+label: Attendees
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: txt
+  max_filesize: ''
+  description_field: false
+field_type: file
